@@ -1,0 +1,118 @@
+------------------------------------------------------------------------------------------------------------------------------------------------
+Sample output files from three of the four dgemm test versions, run
+on a single socket of a Xeon Platinum 8160 (using all 24 cores).
+------------------------------------------------------------------------------------------------------------------------------------------------
+$ export MKL_NUM_THREADS=24
+$ numactl --membind=0 --cpunodebind=0 ./dgemm_test_default.exe 12000 11
+matrix order is 12000
+niters 11 
+DEBUG: initializing arrays
+DEBUG: starting DGEMM tests 
+operation count 3456000000000
+NOTE: the first iteration will be slow due to MKL setup overhead and should be discarded....
+iter seconds gflops
+0 2.605313 1326.520318
+1 2.476062 1395.764842
+2 2.475857 1395.880442
+3 2.479852 1393.631505
+4 2.472258 1397.912111
+5 2.473923 1396.971675
+6 2.495410 1384.942788
+7 2.478182 1394.570490
+8 2.477260 1395.089807
+9 2.478275 1394.518542
+10 2.477609 1394.893451
+STATISTICS mintime 2.472258 maxtime 2.495410 avgtime 2.478469 (max/min)-1 0.009365 (max/avg)-1 0.006835 (min/avg)-1 -0.002506
+MIN AVG MAX GFLOPS 1384.942788 1394.893451 1397.912111 
+AVERAGE_TIME 2.478469 
+AVERAGE_GFLOPS 1394.409364 
+iteration 0 started at TSC 334107637781564
+iteration 1 started at TSC 334113108937534
+iteration 2 started at TSC 334118308666986
+iteration 3 started at TSC 334123507965822
+iteration 4 started at TSC 334128715654892
+iteration 5 started at TSC 334133907397278
+iteration 6 started at TSC 334139102634726
+iteration 7 started at TSC 334144342995282
+iteration 8 started at TSC 334149547177938
+iteration 9 started at TSC 334154749423358
+iteration 10 started at TSC 334159953799880
+iteration 11 started at TSC 334165156777608
+------------------------------------------------------------------------------------------------------------------------------------------------
+$ numactl --membind=0 --cpunodebind=0 ./dgemm_test_MMAP.exe 12000 11
+INFO: Array size (Bytes) 1152000000 -- may be rounded up to next integral number of 4KiB pages
+matrix order is 12000
+niters 11 
+DEBUG: initializing arrays
+DEBUG: starting DGEMM tests 
+operation count 3456000000000
+NOTE: the first iteration will be slow due to MKL setup overhead and should be discarded....
+iter seconds gflops
+0 2.627112 1315.512971
+1 2.439995 1416.396062
+2 2.440315 1416.210481
+3 2.445713 1413.085076
+4 2.439523 1416.670193
+5 2.440159 1416.301386
+6 2.439930 1416.434091
+7 2.444497 1413.787786
+8 2.440457 1416.128240
+9 2.438621 1417.194361
+10 2.439007 1416.969960
+STATISTICS mintime 2.438621 maxtime 2.445713 avgtime 2.440822 (max/min)-1 0.002908 (max/avg)-1 0.002004 (min/avg)-1 -0.000902
+MIN AVG MAX GFLOPS 1413.085076 1416.969960 1417.194361 
+AVERAGE_TIME 2.440822 
+AVERAGE_GFLOPS 1415.916587 
+iteration 0 started at TSC 334192694203968
+iteration 1 started at TSC 334198211138970
+iteration 2 started at TSC 334203335129182
+iteration 3 started at TSC 334208459790846
+iteration 4 started at TSC 334213595787030
+iteration 5 started at TSC 334218718785732
+iteration 6 started at TSC 334223843118468
+iteration 7 started at TSC 334228966971108
+iteration 8 started at TSC 334234100414492
+iteration 9 started at TSC 334239225373766
+iteration 10 started at TSC 334244346477658
+iteration 11 started at TSC 334249468392562
+------------------------------------------------------------------------------------------------------------------------------------------------
+$ numactl --membind=0 --cpunodebind=0 ./dgemm_test_MMAP_2MB.exe 12000 11
+INFO: Array size (Bytes) 1153433600 -- may be rounded up to next integral number of 2MiB pages
+matrix order is 12000
+niters 11 
+DEBUG: initializing arrays
+DEBUG: starting DGEMM tests 
+operation count 3456000000000
+NOTE: the first iteration will be slow due to MKL setup overhead and should be discarded....
+iter seconds gflops
+0 2.621612 1318.273068
+1 2.430972 1421.653639
+2 2.426643 1424.189478
+3 2.427047 1423.952579
+4 2.427550 1423.657633
+5 2.433460 1420.200211
+6 2.428985 1422.816238
+7 2.427028 1423.964013
+8 2.427145 1423.894975
+9 2.432730 1420.626248
+10 2.427292 1423.809008
+STATISTICS mintime 2.426643 maxtime 2.433460 avgtime 2.428885 (max/min)-1 0.002809 (max/avg)-1 0.001883 (min/avg)-1 -0.000923
+MIN AVG MAX GFLOPS 1420.200211 1423.809008 1424.189478 
+AVERAGE_TIME 2.428885 
+AVERAGE_GFLOPS 1422.874974 
+iteration 0 started at TSC 334285275470016
+iteration 1 started at TSC 334290780854094
+iteration 2 started at TSC 334295885894702
+iteration 3 started at TSC 334300981845536
+iteration 4 started at TSC 334306078644170
+iteration 5 started at TSC 334311176498730
+iteration 6 started at TSC 334316286763818
+iteration 7 started at TSC 334321387633040
+iteration 8 started at TSC 334326484390746
+iteration 9 started at TSC 334331581395572
+iteration 10 started at TSC 334336690128124
+iteration 11 started at TSC 334341787440696
+------------------------------------------------------------------------------------------------------------------------------------------------
+dgemm_test_MMAP_1GB.exe was not tested today because I don't have any nodes with 1 GiB pages allocated
+and two reboots would be required to run this test (one to allocate the 1GiB pages and one to free them).
+------------------------------------------------------------------------------------------------------------------------------------------------

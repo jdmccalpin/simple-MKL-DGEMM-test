@@ -1,0 +1,24 @@
+matrix order is 12000
+niters 6 
+DEBUG: initializing arrays
+DEBUG: starting DGEMM tests 
+operation count 3456000000000
+NOTE: the first iteration will be slow due to MKL setup overhead and should be discarded....
+iter seconds gflops
+0 2.608616 1324.840676
+1 2.478539 1394.369664
+2 2.482582 1392.098758
+3 2.480572 1393.226849
+4 2.479626 1393.758373
+5 2.479477 1393.842504
+STATISTICS mintime 2.478539 maxtime 2.482582 avgtime 2.480159 (max/min)-1 0.001631 (max/avg)-1 0.000977 (min/avg)-1 -0.000653
+MIN AVG MAX GFLOPS 1392.098758 1393.842504 1394.369664 
+AVERAGE_TIME 2.480159 
+AVERAGE_GFLOPS 1393.458803 
+iteration 0 started at TSC 341786649258202
+iteration 1 started at TSC 341792127350542
+iteration 2 started at TSC 341797332282738
+iteration 3 started at TSC 341802545705648
+iteration 4 started at TSC 341807754907268
+iteration 5 started at TSC 341812962122306
+iteration 6 started at TSC 341818169023040
