@@ -1,5 +1,5 @@
 CC = icc 
-CCFLAGS=-sox -qopenmp -I$(TACC_MKL_INC)
+CCFLAGS=-sox -qopenmp
 LDFLAGS=-mkl
 
 SOURCES=simple_MKL_DGEMM_test.c low_overhead_timers.c
